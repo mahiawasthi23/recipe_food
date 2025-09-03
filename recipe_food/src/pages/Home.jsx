@@ -25,10 +25,6 @@ export default function Home() {
                     </button>
                 </div>
             </div>
-            {/* <div id="hero-section" className="hero-section">
-                <h2>Welcome to the Hero Section</h2>
-                <p>Here you can showcase your featured recipes or content.</p>
-            </div> */}
             <Heropages />
         </div>
     );
