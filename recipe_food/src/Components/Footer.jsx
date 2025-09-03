@@ -1,7 +1,10 @@
-export default function Footer() {
-  return (
-    <footer style={{ padding: 20, textAlign: "center", background: "#f1f1f1", marginTop: 50 }}>
-      <p>© 2025 RecipeApp. All rights reserved.</p>
-    </footer>
-  );
-}
+import React from "react";
+import "./Footer.css";
+
+const Footer = () => (
+  <footer className="footer">
+    <p>&copy; 2025 Recipe App. All rights reserved.</p>
+  </footer>
+);
+
+export default Footer;

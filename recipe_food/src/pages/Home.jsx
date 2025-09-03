@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import "./Home.css";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Welcome to RecipeApp</h1>
-      <p>Manage your recipes easily. Add, update, delete, and track calories.</p>
-      <Link to="/signup" style={{ color: "blue", textDecoration: "underline" }}>Get started by signing up!</Link>
+    <div className="home">
+      <h1>Welcome to Recipe App</h1>
+      <p>Manage your recipes easily. Add, view, and track calories!</p>
     </div>
   );
-}
+};
+
+export default Home;
+
