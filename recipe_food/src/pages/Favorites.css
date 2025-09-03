@@ -1,0 +1,132 @@
+.favorites-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.favorites-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.favorite-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.favorite-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.fav-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.favorite-content {
+  padding: 15px;
+}
+
+.favorite-content h4 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #111;
+}
+
+.favorite-content p {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.favorite-btn, .delete-btn {
+  margin-top: 5px;
+  padding: 7px 15px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.favorite-btn {
+  background-color: palevioletred;
+  color: #fff;
+}
+
+.favorite-btn:hover {
+  background-color: pink;
+}
+
+.delete-btn {
+  background-color: red;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.delete-btn:hover {
+  background-color: rgb(244, 93, 93);
+}
+
+.back-btn {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 10px 25px;
+  font-size: 1rem;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: rgb(244, 53, 53);
+}
+
+
+@media (max-width: 768px) {
+  .favorite-content h4 {
+    font-size: 1.3rem;
+  }
+
+  .favorite-content p {
+    font-size: 0.9rem;
+  }
+
+  .favorite-btn, .delete-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fav-img {
+    height: 150px;
+  }
+
+  .back-btn {
+    width: 90%;
+    font-size: 0.95rem;
+  }
+
+  .favorite-btn, .delete-btn {
+    width: 48%;
+    margin: 5px 1%;
+    display: inline-block;
+  }
+}

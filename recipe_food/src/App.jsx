@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Favorites from "./pages/Favorites";
 import RecipeForm from "./pages/RecipeForm";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/recipeform" element={<RecipeForm />} />
+        <Route path="/favorites" element={<Favorites />} /> 
       </Routes>
       <Footer />
     </Router>
