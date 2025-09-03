@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./RecipeForm.css";
 
-const RecipeForm = ({ user }) => {
+const RecipeForm = () => {
   const [form, setForm] = useState({
     title: "",
     calories: "",
@@ -13,36 +13,55 @@ const RecipeForm = ({ user }) => {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    // Prepare data for MongoDB
-    const recipeData = {
-      ...form,
-      ingredients: form.ingredients.split(",").map((i) => i.trim()),
-      calories: Number(form.calories),
-      createdBy: user._id
-    };
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+  console.log("Logged User:", loggedUser);
 
-    fetch("http://localhost:5000/api/recipes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(recipeData)
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.recipe) {
-          alert("Recipe added successfully!");
-          setForm({ title: "", calories: "", ingredients: "", instructions: "", image: "" });
-        } else {
-          alert("Error adding recipe!");
-        }
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-        alert("Something went wrong!");
-      });
+  if (!loggedUser) {
+    alert("Please login first!");
+    return;
+  }
+
+  const recipeData = {
+    ...form,
+    ingredients: form.ingredients.split(",").map((i) => i.trim()),
+    calories: Number(form.calories),
+    createdBy: loggedUser._id,
+    image: form.image
   };
+
+  console.log("📤 Sending Recipe Data:", recipeData); 
+
+  fetch("http://localhost:5000/api/recipes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(recipeData)
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("📥 API Response:", data);
+
+      if (data.recipe) {
+        alert("✅ Recipe added successfully!");
+        setForm({
+          title: "",
+          calories: "",
+          ingredients: "",
+          instructions: "",
+          image: ""
+        });
+      } else {
+        alert("❌ Error adding recipe!");
+      }
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      alert("Something went wrong!");
+    });
+};
+
 
   return (
     <div className="recipe-form-container">
@@ -103,6 +122,7 @@ const RecipeForm = ({ user }) => {
             placeholder="https://example.com/image.jpg"
             value={form.image}
             onChange={handleChange}
+            required
           />
         </label>
 
@@ -113,3 +133,4 @@ const RecipeForm = ({ user }) => {
 };
 
 export default RecipeForm;
+
