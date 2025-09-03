@@ -94,7 +94,11 @@
   color: #e63946;
 }
 
+
 .recipe ul,
 .recipe ol {
   margin: 5px 0 10px 20px;
+  list-style: none;  
+  padding-left: 0;  
 }
+
