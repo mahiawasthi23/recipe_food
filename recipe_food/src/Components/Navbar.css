@@ -1,30 +1,165 @@
+/* =========================
+   Global Body Styles
+========================= */
+body {
+  margin: 0;
+  padding-top: 80px; /* height of navbar */
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================
+   Navbar Styles
+========================= */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #66b3ff;
-  color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background-color: #333;
+  color: #fff;
+  padding: 20px 28px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
-.navbar h1 {
-  margin: 0;
-  font-size: 24px;
-}
-
-.navbar ul {
-  list-style: none;
+/* Logo */
+.logo {
   display: flex;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.navbar ul li {
+.logo-img {
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+  border: none;
+  background: none;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links a,
+.nav-links button {
+  color: #fff;
+  text-decoration: none;
+  font-size: 19px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  color: #fff;
+}
+
+/* Logout Button */
+.logout-btn {
+  background: #e63946;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #d62828;
+}
+
+/* Generic Nav Buttons */
+.nav-btn {
+  background-color: #ff7043;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  margin: 0 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: #ff5722;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
   cursor: pointer;
 }
 
-.navbar ul li:hover {
-  text-decoration: underline;
+/* =========================
+   Responsive: Tablets
+========================= */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #333;
+    margin-top: 10px;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    width: 100%;
+    height: 48px;
+    font-size: 18px;
+    text-align: left;
+    padding: 0 20px;
+  }
+}
+
+/* =========================
+   Responsive: Mobile
+========================= */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
 }
