@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import RecipeVideo from "../assets/Homepage.mp4"; 
+import Heropages from "./Heropages";
 
 export default function Home() {
     return (
@@ -28,6 +29,7 @@ export default function Home() {
                 <h2>Welcome to the Hero Section</h2>
                 <p>Here you can showcase your featured recipes or content.</p>
             </div> */}
+            <Heropages />
         </div>
     );
 }
