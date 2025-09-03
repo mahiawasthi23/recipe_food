@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,4 +27,143 @@
 
 .navbar ul li:hover {
   text-decoration: underline;
+} */
+
+
+body {
+  margin: 0;
+  padding-top: 80px; /* navbar ke height ke equal */
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 20px 28px;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Logo */
+.navbar h1 {
+  margin: 0;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Nav Links */
+.navbar ul {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a,
+.navbar ul li button {
+  color: #fff;
+  text-decoration: none;
+  font-size: 19px;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.navbar ul li a:hover,
+.navbar ul li button:hover {
+  color: #ff7043;
+}
+
+/* Logout button */
+.logout-btn {
+  background: #e63946;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: #d62828;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+}
+
+/* Responsive - Small screen */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #333;
+    margin-top: 10px;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+  }
+
+  .navbar ul.show {
+    display: flex;
+  }
+
+  .navbar ul li a,
+  .navbar ul li button {
+    width: 100%;
+    height: 48px;
+    font-size: 18px;
+    text-align: left;
+    padding: 0 20px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .navbar h1 {
+    font-size: 20px;
+  }
+
+  .navbar ul li a,
+  .navbar ul li button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
 }
