@@ -5,7 +5,10 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const user = location.state?.user;
+
+  
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const user = location.state?.user || storedUser;
 
   const [recipes, setRecipes] = useState([]);
   const [totalCalories, setTotalCalories] = useState(0);
@@ -92,4 +95,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
