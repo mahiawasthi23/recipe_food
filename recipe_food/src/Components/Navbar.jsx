@@ -16,6 +16,9 @@ const Navbar = () => {
       setUser(updatedUser);
     };
 
+
+
+    
     window.addEventListener("storageUpdate", handleStorageUpdate);
 
     return () => {
