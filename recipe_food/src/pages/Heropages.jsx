@@ -150,8 +150,9 @@ import "./Heropages.css";
 
 const heroData = [
     {
-        title: "Pasta",
+        title: " See Recipe Pasta",
         img: "https://pinchofyum.com/wp-content/uploads/Roasted-Red-Pepper-Pasta-420x600.jpg",
+        video: "https://www.youtube.com/watch?v=1MKvJdH4Q5c&t=97s",
         recipe: {
             ingredients: ["200g pasta", "1 red pepper", "2 tbsp olive oil", "Parmesan cheese"],
             steps: [
@@ -164,8 +165,9 @@ const heroData = [
         }
     },
     {
-        title: "Salads",
+        title: " See Recipe Salads",
         img: "https://pinchofyum.com/wp-content/uploads/Toss-Pasta-Salad-Bowl-420x600.jpg",
+         video: "https://www.youtube.com/watch?v=5MIjSiVkP_Y&t=7s", 
         recipe: {
             ingredients: ["Lettuce", "Tomatoes", "Cucumber", "Olive oil", "Salt & Pepper"],
             steps: [
@@ -178,8 +180,9 @@ const heroData = [
         }
     },
     {
-        title: "Most Popular",
+        title: " See Recipe Most Popular",
         img: "https://pinchofyum.com/wp-content/uploads/Ginger-Peanut-Chicken-1-420x600.jpg",
+         video: "https://www.youtube.com/watch?v=_EXG0AXSKr4",  
         recipe: {
             ingredients: ["500g chicken", "2 tbsp soy sauce", "1 tbsp ginger", "Peanuts"],
             steps: [
@@ -192,8 +195,9 @@ const heroData = [
         }
     },
     {
-        title: "Quick and Easy",
+        title: " See Recipe Quick and Easy",
         img: "https://pinchofyum.com/wp-content/uploads/Teriyaki-Burgers-9-420x600.jpg",
+         video: "https://www.youtube.com/watch?v=yBSBQS2c8XE",  
         recipe: {
             ingredients: ["2 burger buns", "Chicken patty", "Teriyaki sauce", "Lettuce"],
             steps: [
@@ -206,8 +210,9 @@ const heroData = [
         }
     },
     {
-        title: "Crispy Smashed Potato Salad",
+        title: " See Recipe Crispy Smashed Potato Salad",
         img: "https://cdn.storifyme.xyz/accounts/pinchofyum-2302815/assets/696x928/480x/f-screenshot-2025-07-14-at-111339-am-69771752509633937.png?t=1752509661000",
+         video: "https://www.youtube.com/watch?v=UZqYzB36FnI", 
         recipe: {
             ingredients: ["6 baby potatoes", "2 tbsp olive oil", "Salt", "Fresh herbs"],
             steps: [
@@ -220,8 +225,9 @@ const heroData = [
         }
     },
     {
-        title: "Thai-Inspired Chicken Salad",
+        title: " See Recipe Thai-Inspired Chicken Salad",
         img: "https://cdn.storifyme.xyz/accounts/pinchofyum-2302815/assets/696x928/480x/f-screenshot-2025-07-08-at-14021-pm-17451752000053470.png?t=1752000080000",
+         video: "https://www.youtube.com/watch?v=Uo_zwMXkyEY",  
         recipe: {
             ingredients: ["200g chicken breast", "Lettuce", "Carrots", "Peanuts", "Thai dressing"],
             steps: [
@@ -234,8 +240,9 @@ const heroData = [
         }
     },
     {
-        title: "Chocolate Chip Cookies",
+        title: " See Recipe Chocolate Chip Cookies",
         img: "https://cdn.storifyme.xyz/accounts/pinchofyum-2302815/assets/696x928/480x/f-screenshot-2025-07-03-at-113847-am-41071751560739101.png?t=1751560754000",
+         video: "https://www.youtube.com/watch?v=SWt_sAdCRGs", 
         recipe: {
             ingredients: ["1 cup flour", "1/2 cup butter", "1/2 cup sugar", "1/2 cup chocolate chips"],
             steps: [
@@ -248,8 +255,9 @@ const heroData = [
         }
     },
     {
-        title: "Ricotta Meatballs",
+        title: " See Recipe Ricotta Meatballs",
         img: "https://cdn.storifyme.xyz/accounts/pinchofyum-2302815/assets/696x928/480x/f-screenshot-2025-07-03-at-113202-am-18481751560331383.png?t=1751560438000",
+         video: "https://www.youtube.com/watch?v=NMt1kND23OA",  
         recipe: {
             ingredients: ["300g ground beef", "1/2 cup ricotta cheese", "1 egg", "Breadcrumbs"],
             steps: [
@@ -299,6 +307,18 @@ export default function Heropages() {
                                     <span className="calories-heading">Calories:</span> {item.recipe.calories}
                                 </p>
                             )}
+
+
+                            {item.video ? (
+                                <a href={item.video} target="_blank" rel="noopener noreferrer">
+                                    <span className="tag">{item.title}</span>
+                                </a>
+                            ) : (
+                                <span className="tag">{item.title}</span>
+                            )}
+
+
+
                         </div>
                     </div>
                 ))}
