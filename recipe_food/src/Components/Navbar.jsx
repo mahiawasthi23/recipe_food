@@ -45,7 +45,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h1>Recipe App</h1>
+      <div className="logo_food">
+        <img src="girlfood.png" className="cook_logo"/>
+        <h1><span>𝓡𝓮𝓬𝓲𝓹𝓮 𝓐𝓹𝓹</span></h1>
+      </div>
+
       <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
         <div></div>
         <div></div>
