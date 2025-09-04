@@ -14,7 +14,7 @@ export default function Home() {
 
                 <div className="banner-content">
                     <h1>Spice & Flavor</h1>
-                    <p>Fresh Ingredients • Tasty Recipes • Healthy Living</p>
+                    <p>Fresh Ingredients  Tasty Recipes  Healthy Living</p>
                     <button
                         className="banner-btn"
                         onClick={() =>
