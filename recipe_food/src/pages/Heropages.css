@@ -94,7 +94,24 @@
   color: #e63946;
 }
 
+
 .recipe ul,
 .recipe ol {
   margin: 5px 0 10px 20px;
+  list-style: none;  
+  padding-left: 0;  
 }
+
+/* Calories line */
+.recipe p {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #333;  /* normal text */
+}
+
+/* Sirf heading red me */
+.recipe .calories-heading {
+  color: #e63946;  
+  font-weight: 600;
+}
+

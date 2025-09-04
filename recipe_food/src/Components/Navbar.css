@@ -4,7 +4,6 @@ body {
   overflow-x: hidden;
 }
 
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -25,14 +24,12 @@ body {
   overflow: hidden;
 }
 
-
 .navbar h1 {
   margin: 0;
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
 
 .navbar ul {
   display: flex;
@@ -66,7 +63,6 @@ body {
   color: #ff7043;
 }
 
-
 .logout-btn {
   background: #e63946;
   padding: 6px 12px;
@@ -77,7 +73,6 @@ body {
 .logout-btn:hover {
   background: #d62828;
 }
-
 
 .hamburger {
   display: none;
@@ -91,7 +86,6 @@ body {
   height: 3px;
   background: #fff;
 }
-
 
 @media (max-width: 768px) {
   .hamburger {
@@ -122,7 +116,6 @@ body {
     padding: 0 20px;
   }
 }
-
 
 @media (max-width: 480px) {
   .navbar h1 {

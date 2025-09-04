@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import { FaLinkedin, FaInstagram, FaTwitter, FaYoutube, FaFacebook } from "react-icons/fa";
+import { FaLinkedin,  FaTwitter, FaYoutube} from "react-icons/fa";
 
 function Footer() {
   return (
@@ -71,10 +71,8 @@ function Footer() {
           <h4>SOCIAL LINKS</h4>
           <div className="social-icons">
             <FaLinkedin />
-            <FaInstagram />
             <FaTwitter />
             <FaYoutube />
-            <FaFacebook />
           </div>
           <div className="app-badges">
             <img src="https://b.zmtcdn.com/data/o2_assets/df6464de32f4a09262cee301f65aaa661739351256.png" alt="App Store" />
