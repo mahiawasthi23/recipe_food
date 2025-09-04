@@ -8,11 +8,27 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUserRaw = localStorage.getItem("user");
+    let storedUser = null;
+
+    try {
+      storedUser = JSON.parse(storedUserRaw);
+    } catch {
+   
+      if (storedUserRaw) storedUser = { email: storedUserRaw };
+    }
+
     if (storedUser) setUser(storedUser);
 
+  
     const handleStorageUpdate = () => {
-      const updatedUser = JSON.parse(localStorage.getItem("user"));
+      const updatedUserRaw = localStorage.getItem("user");
+      let updatedUser = null;
+      try {
+        updatedUser = JSON.parse(updatedUserRaw);
+      } catch {
+        if (updatedUserRaw) updatedUser = { email: updatedUserRaw };
+      }
       setUser(updatedUser);
     };
 
