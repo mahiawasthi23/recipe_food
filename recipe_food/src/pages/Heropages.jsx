@@ -4,7 +4,7 @@ const heroData = [
     {
         title: " See Recipe Pasta",
         img: "https://media.istockphoto.com/id/482964545/photo/arrabiata-pasta.webp?a=1&b=1&s=612x612&w=0&k=20&c=WgBDLDed6qro4H1gamjxl5hWALBdXm6T0UGSU3d6TRo=",
-        video: "https://www.youtube.com/watch?v=1MKvJdH4Q5c&t=97s",
+        video: "https://www.youtube.com/watch?v=1MKvJdH4Q5c&t=263s",
         recipe: {
             ingredients: ["200g pasta", "1 red pepper", "2 tbsp olive oil", "Parmesan cheese"],
             steps: [
@@ -20,7 +20,7 @@ const heroData = [
     {
     title: " See Recipe Rainbow Salad",
     img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c2FsYWR8ZW58MHx8MHx8fDA%3D",
-    video: "https://www.youtube.com/watch?v=5MIjSiVkP_Y&t=7s", 
+    video: "https://www.youtube.com/watch?v=xCJe_fHAGmY&t=1s", 
     recipe: {
         ingredients: [
             "Tomatoes",
@@ -42,7 +42,7 @@ const heroData = [
     {
     title: " See Recipe Veg Burger",
     img: "https://media.istockphoto.com/id/1161931223/photo/vegetarian-burger-with-chickpea-cutlet-and-vegetables-veg-concept-copy-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=LY9zBUPc3hZfmlKraOy1RNkKHJK1O-SsP1wUEIoO6PY=",
-    video: "https://www.youtube.com/watch?v=yBSBQS2c8XE",  
+    video: "https://www.youtube.com/watch?v=_q5GKCNZcHI&t=513s",  
     recipe: {
         ingredients: ["2 burger buns", "Veg patty", "Lettuce", "Tomato", "Cheese", "Sauce"],
         steps: [
@@ -58,7 +58,7 @@ const heroData = [
     {
     title: " See Recipe Vegetable Spring Rolls",
     img: "https://media.istockphoto.com/id/2153780161/photo/spring-rolls-filled-with-meat-and-vegetables-served-with-soy-sauce-on-wooden-table.jpg?s=612x612&w=0&k=20&c=5sqsmGuMsnEEqA3_krSSlOx1SI7jEKfImo6O7QLW6vw=",
-    video: "https://www.youtube.com/watch?v=UZqYzB36FnI", 
+    video: "https://www.youtube.com/watch?v=2Kp--pUv7l8", 
     recipe: {
         ingredients: ["Spring roll wrappers", "Cabbage", "Carrot", "Capsicum", "Onion", "Soy sauce", "Salt & Pepper"],
         steps: [
@@ -71,11 +71,10 @@ const heroData = [
     }
 },
 
-
     {
     title: " See Recipe Paneer Tikka",
     img: "https://media.istockphoto.com/id/1384819153/photo/heart-shaped-veg-paneer-cutlet-tikki-with-bhujia-sev-coating-made-of-indian-cottage-cheese.webp?a=1&b=1&s=612x612&w=0&k=20&c=75dVXvItBj-DWiHEpJR-NcqLKIHXd-BMNO0wm_ApEKs=",
-    video: "https://www.youtube.com/watch?v=Uo_zwMXkyEY",  
+    video: "https://www.youtube.com/watch?v=0lWO65w0a_s",  
     recipe: {
         ingredients: ["200g paneer cubes", "Capsicum", "Onion", "Yogurt", "Spices", "Lemon juice"],
         steps: [
@@ -89,7 +88,7 @@ const heroData = [
     {
     title: " See Recipe Sandwich",
     img: "https://images.unsplash.com/photo-1592415486689-125cbbfcbee2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fFNhbmR3aWNofGVufDB8fDB8fHww",
-    video: "https://www.youtube.com/watch?v=_EXG0AXSKr4",  
+    video: "https://www.youtube.com/watch?v=_Sc2EbtHmxo&t=1s",  
     recipe: {
         ingredients: ["Bread slices", "Paneer or cheese", "Tomato", "Cucumber", "Lettuce", "Butter/Mayonnaise"],
         steps: [
@@ -121,7 +120,7 @@ const heroData = [
     {
     title: " See Recipe Chana Chaat",
     img: "https://media.istockphoto.com/id/1406389610/photo/black-chickpea-chaat-or-kala-chana-chat.webp?a=1&b=1&s=612x612&w=0&k=20&c=j22bZ6v-09hvV5ObFoUu-mZ346Sz7itLZmbp00Vkbjw=",
-    video: "https://www.youtube.com/watch?v=NMt1kND23OA",  
+    video: "https://www.youtube.com/watch?v=TtK0UinxTE8",  
     recipe: {
         ingredients: ["1 cup boiled chickpeas", "Onion", "Tomato", "Cucumber", "Green chili", "Coriander leaves", "Lemon juice", "Chaat masala", "Salt"],
         steps: [
