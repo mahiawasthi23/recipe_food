@@ -14,13 +14,11 @@ const Navbar = () => {
     try {
       storedUser = JSON.parse(storedUserRaw);
     } catch {
-   
       if (storedUserRaw) storedUser = { email: storedUserRaw };
     }
 
     if (storedUser) setUser(storedUser);
 
-  
     const handleStorageUpdate = () => {
       const updatedUserRaw = localStorage.getItem("user");
       let updatedUser = null;
@@ -32,9 +30,6 @@ const Navbar = () => {
       setUser(updatedUser);
     };
 
-
-
-    
     window.addEventListener("storageUpdate", handleStorageUpdate);
 
     return () => {
@@ -56,17 +51,21 @@ const Navbar = () => {
         <div></div>
         <div></div>
       </div>
+
       <ul className={menuOpen ? "show" : ""}>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/favorites">Favorites</Link></li>
-        <li><Link to="/recipeform">Add Recipe</Link></li>
+
         {user ? (
-          <li>
-            <button className="logout-btn" onClick={handleLogout}>
-              Logout
-            </button>
-          </li>
+          <>
+            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li><Link to="/favorites">Favorites</Link></li>
+            <li><Link to="/recipeform">Add Recipe</Link></li>
+            <li>
+              <button className="logout-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            </li>
+          </>
         ) : (
           <>
             <li><Link to="/login">Login</Link></li>
