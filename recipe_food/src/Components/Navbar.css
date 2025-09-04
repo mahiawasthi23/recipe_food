@@ -1,6 +1,12 @@
-body {
+* {
   margin: 0;
-  padding-top: 80px; 
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
 
@@ -8,71 +14,109 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #333;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  padding: 20px 28px;
+  background: #222;
+  padding: 12px 20px;
   color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   flex-wrap: wrap;
-  box-sizing: border-box;
-  overflow: hidden;
 }
 
-.navbar h1 {
-  margin: 0;
-  font-size: 24px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+
+.logo_food {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
 }
+
+
+.cook_logo {
+  width: 55px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.cook_logo:hover {
+  transform: rotate(12deg) scale(1.1);
+}
+
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+
+.logo_food h1 {
+  font-family: "Pacifico", cursive;
+  font-size: 28px;
+  color: #ff6f61;
+  background: linear-gradient(90deg, #ff6f61, #ffbb61, #ff6f61);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 8px rgba(255,111,97,0.6), 0 0 15px rgba(255,187,97,0.6);
+  }
+  to {
+    text-shadow: 0 0 18px rgba(255,111,97,1), 0 0 30px rgba(255,187,97,1);
+  }
+}
+
 
 .navbar ul {
   display: flex;
-  gap: 15px;
-  align-items: center;
-  flex-wrap: wrap;
+  gap: 18px;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  align-items: center;
 }
 
 .navbar ul li a,
 .navbar ul li button {
+  font-size: 17px;
+  padding: 8px 14px;
   color: #fff;
   text-decoration: none;
-  font-size: 19px;
-  transition: color 0.3s ease;
+  border-radius: 6px;
+  transition: all 0.3s ease;
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 4px;
 }
 
 .navbar ul li a:hover,
 .navbar ul li button:hover {
   color: #ff7043;
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
 }
 
 .logout-btn {
   background: #e63946;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
   background: #d62828;
+  transform: scale(1.05);
 }
+
 
 .hamburger {
   display: none;
@@ -82,10 +126,13 @@ body {
 }
 
 .hamburger div {
-  width: 25px;
+  width: 28px;
   height: 3px;
   background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
+
 
 @media (max-width: 768px) {
   .hamburger {
@@ -96,11 +143,12 @@ body {
     display: none;
     flex-direction: column;
     width: 100%;
-    background: #333;
-    margin-top: 10px;
+    background: #222;
+    margin-top: 12px;
+    padding: 12px 0;
     gap: 10px;
-    padding: 10px 0;
     border-top: 1px solid #444;
+    animation: slideDown 0.3s ease;
   }
 
   .navbar ul.show {
@@ -110,21 +158,36 @@ body {
   .navbar ul li a,
   .navbar ul li button {
     width: 100%;
-    height: 48px;
-    font-size: 18px;
     text-align: left;
-    padding: 0 20px;
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .logo_food h1 {
+    font-size: 24px;
   }
 }
 
+
 @media (max-width: 480px) {
-  .navbar h1 {
+  .cook_logo {
+    width: 45px;
+  }
+
+  .logo_food h1 {
     font-size: 20px;
   }
 
   .navbar ul li a,
   .navbar ul li button {
-    font-size: 16px;
-    padding: 8px 16px;
+    font-size: 15px;
+    padding: 10px 16px;
   }
 }
+
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
