@@ -28,11 +28,9 @@ const Dashboard = ({ searchTerm }) => {
         );
         let recipesData = await resRecipes.json();
 
-       
         const storedFavorites =
           JSON.parse(localStorage.getItem("favorites")) || [];
 
-        
         recipesData = recipesData.map((r) => ({
           ...r,
           isFavorite: storedFavorites.some((f) => f._id === r._id),
@@ -41,7 +39,6 @@ const Dashboard = ({ searchTerm }) => {
         setRecipes(recipesData);
         setFilteredRecipes(recipesData);
 
-       
         const resCalories = await fetch(
           "https://recipe-backend-011q.onrender.com/api/recipes/dashboard/total-calories"
         );
@@ -80,7 +77,6 @@ const Dashboard = ({ searchTerm }) => {
       setRecipes(updatedRecipes);
       setFilteredRecipes(updatedRecipes);
 
-      
       const updatedFavorites = updatedRecipes.filter((r) => r.isFavorite);
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     } catch (err) {
@@ -136,7 +132,9 @@ const Dashboard = ({ searchTerm }) => {
                 <p>
                   <strong>Calories:</strong> {recipe.calories}
                 </p>
-                <p>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
                   <span
                     onClick={() => toggleFavorite(recipe._id)}
                     style={{
@@ -147,13 +145,14 @@ const Dashboard = ({ searchTerm }) => {
                   >
                     {recipe.isFavorite ? <FaHeart /> : <FaRegHeart />}
                   </span>
-                </p>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(recipe._id)}
-                >
-                  Delete
-                </button>
+
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(recipe._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))
