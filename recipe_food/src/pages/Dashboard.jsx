@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+
 import "./Dashboard.css";
 
-const Dashboard = ({ searchTerm }) => {
+const Dashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -10,7 +12,6 @@ const Dashboard = ({ searchTerm }) => {
   const user = location.state?.user || storedUser;
 
   const [recipes, setRecipes] = useState([]);
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [totalCalories, setTotalCalories] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -22,13 +23,19 @@ const Dashboard = ({ searchTerm }) => {
 
     const fetchData = async () => {
       try {
-        const resRecipes = await fetch("http://localhost:5000/api/recipes");
+        const resRecipes = await fetch("https://recipe-backend-011q.onrender.com/api/recipes");
         const recipesData = await resRecipes.json();
-        setRecipes(recipesData);
-        setFilteredRecipes(recipesData);
+
+        const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        const updatedRecipes = recipesData.map((r) => ({
+          ...r,
+          isFavorite: storedFavorites.some((f) => f._id === r._id),
+        }));
+
+        setRecipes(updatedRecipes);
 
         const resCalories = await fetch(
-          "http://localhost:5000/api/recipes/dashboard/total-calories"
+          "https://recipe-backend-011q.onrender.com/api/recipes/dashboard/total-calories"
         );
         const caloriesData = await resCalories.json();
         setTotalCalories(caloriesData.totalCalories);
@@ -42,28 +49,18 @@ const Dashboard = ({ searchTerm }) => {
 
     fetchData();
   }, [user, navigate]);
-  useEffect(() => {
-    if (searchTerm) {
-      const filtered = recipes.filter((r) =>
-        r.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredRecipes(filtered);
-    } else {
-      setFilteredRecipes(recipes);
-    }
-  }, [searchTerm, recipes]);
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/recipes/${id}`, {
+      await fetch(`https://recipe-backend-011q.onrender.com/api/recipes/${id}`, {
         method: "DELETE",
       });
-      const updatedRecipes = recipes.filter((r) => r._id !== id);
-      setRecipes(updatedRecipes);
-      setFilteredRecipes(updatedRecipes);
 
-      const favs = updatedRecipes.filter((r) => r.isFavorite);
-      localStorage.setItem("favorites", JSON.stringify(favs));
+      const remainingRecipes = recipes.filter((r) => r._id !== id);
+      setRecipes(remainingRecipes);
+
+      const updatedFavorites = remainingRecipes.filter((r) => r.isFavorite);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     } catch (err) {
       console.error("Delete error:", err);
     }
@@ -71,7 +68,7 @@ const Dashboard = ({ searchTerm }) => {
 
   const toggleFavorite = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/recipes/favorite/${id}`, {
+      await fetch(`https://recipe-backend-011q.onrender.com/api/recipes/favorite/${id}`, {
         method: "POST",
       });
 
@@ -80,7 +77,6 @@ const Dashboard = ({ searchTerm }) => {
       );
 
       setRecipes(updatedRecipes);
-      setFilteredRecipes(updatedRecipes);
 
       const favs = updatedRecipes.filter((r) => r.isFavorite);
       localStorage.setItem("favorites", JSON.stringify(favs));
@@ -98,45 +94,42 @@ const Dashboard = ({ searchTerm }) => {
       <h3>Total Calories: {totalCalories}</h3>
 
       <div className="recipe-grid">
-        {filteredRecipes.length > 0 ? (
-          filteredRecipes.map((recipe) => (
-            <div className="recipe-card" key={recipe._id}>
-              {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-              <div className="recipe-content">
-                <h4>{recipe.title}</h4>
-                <p>
-                  <strong>Ingredients:</strong>{" "}
-                  {Array.isArray(recipe.ingredients)
-                    ? recipe.ingredients.join(", ")
-                    : recipe.ingredients}
-                </p>
-                <p>
-                  <strong>Instructions:</strong> {recipe.instructions}
-                </p>
-                <p>
-                  <strong>Calories:</strong> {recipe.calories}
-                </p>
-                <p>
-                  <strong>Favorite:</strong> {recipe.isFavorite ? "Yes" : "No"}{" "}
-                  <button
-                    className="favorite-btn"
-                    onClick={() => toggleFavorite(recipe._id)}
-                  >
-                    {recipe.isFavorite ? "Remove Favorite" : "Mark Favorite"}
-                  </button>
-                </p>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(recipe._id)}
+        {recipes.map((recipe) => (
+          <div className="recipe-card" key={recipe._id}>
+            {recipe.image && <img src={recipe.image} alt={recipe.title} />}
+            <div className="recipe-content">
+              <h4>{recipe.title}</h4>
+              <p>
+                <strong>Ingredients:</strong>{" "}
+                {recipe.ingredients.join(", ")}
+              </p>
+              <p>
+                <strong>Instructions:</strong> {recipe.instructions}
+              </p>
+              <p>
+                <strong>Calories:</strong> {recipe.calories}
+              </p>
+              <p>
+                <span
+                  onClick={() => toggleFavorite(recipe._id)}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "22px",
+                    color: recipe.isFavorite ? "red" : "gray",
+                  }}
                 >
-                  Delete
-                </button>
-              </div>
+                  {recipe.isFavorite ? <FaHeart /> : <FaRegHeart />}
+                </span>
+              </p>
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(recipe._id)}
+              >
+                Delete
+              </button>
             </div>
-          ))
-        ) : (
-          <p>No recipes found</p>
-        )}
+          </div>
+        ))}
       </div>
     </div>
   );

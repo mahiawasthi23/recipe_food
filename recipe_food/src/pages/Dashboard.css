@@ -89,14 +89,20 @@
   background-color: #cc0000;
 }
 
-.favorite-btn {
-  background-color: #ffd700;
-  color: #333;
+.favorite-icon {
+  cursor: pointer;
+  font-size: 20px;
+  transition: color 0.3s ease;
 }
 
-.favorite-btn:hover {
-  background-color: #e6c200;
+.favorite-icon.favorite {
+  color: red;  
 }
+
+.favorite-icon.not-favorite {
+  color: gray; 
+}
+
 
 
 @media (max-width: 768px) {

@@ -12,7 +12,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://recipe-app-backend-3-zktr.onrender.com/api/auth/signup",
+        "https://recipe-backend-011q.onrender.com/api/auth/signup",
         {
           method: "POST",
           body: JSON.stringify({ username: name, email, password }),
