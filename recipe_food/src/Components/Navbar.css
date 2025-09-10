@@ -191,5 +191,39 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* 🔎 Navbar Search Bar Styling */
+.navbar-search {
+  padding: 8px 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  width: 220px;
+  backdrop-filter: blur(8px);
+}
+
+.navbar-search::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.navbar-search:focus {
+  border-color: #ff6f61;
+  box-shadow: 0 0 8px rgba(255, 111, 97, 0.6),
+              0 0 15px rgba(255, 187, 97, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.03);
+}
+
+/* ✅ Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar-search {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
 
 
