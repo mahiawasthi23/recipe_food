@@ -1,6 +1,7 @@
 .recipe-form-container {
   max-width: 600px;
   margin: 40px auto;
+  margin-top: 100px;
   padding: 25px;
   background: #ffffff;
   border-radius: 12px;
@@ -96,6 +97,7 @@
 @media (max-width: 768px) {
   .recipe-form-container {
     margin: 20px;
+    margin-top: 100px;
     padding: 20px;
   }
 
