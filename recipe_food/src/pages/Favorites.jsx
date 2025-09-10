@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // Heart icons
 import "./Favorites.css";
 
 const Favorites = () => {
@@ -12,17 +13,14 @@ const Favorites = () => {
   }, []);
 
   const toggleFavorite = (id) => {
-    const updatedFavorites = favorites.map((r) =>
-      r._id === id ? { ...r, isFavorite: !r.isFavorite } : r
-    ).filter(r => r.isFavorite); // remove from favorites if unmarked
+    const updatedFavorites = favorites
+      .map((r) =>
+        r._id === id ? { ...r, isFavorite: !r.isFavorite } : r
+      )
+      .filter((r) => r.isFavorite); d
 
     setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
 
-  const handleDelete = (id) => {
-    const updatedFavorites = favorites.filter((r) => r._id !== id);
-    setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
@@ -48,28 +46,33 @@ const Favorites = () => {
             )}
             <div className="favorite-content">
               <h4>{recipe.title}</h4>
-              <p><strong>Ingredients:</strong> {recipe.ingredients.join(", ")}</p>
-              <p><strong>Instructions:</strong> {recipe.instructions}</p>
-              <p><strong>Calories:</strong> {recipe.calories}</p>
               <p>
-                <strong>Favorite:</strong> {recipe.isFavorite ? "Yes" : "No"}{" "}
-                <button
-                  className="favorite-btn"
-                  onClick={() => toggleFavorite(recipe._id)}
-                >
-                  {recipe.isFavorite ? "Remove Favorite" : "Mark Favorite"}
-                </button>
+                <strong>Ingredients:</strong>{" "}
+                {Array.isArray(recipe.ingredients)
+                  ? recipe.ingredients.join(", ")
+                  : "N/A"}
               </p>
-              <button
-                className="delete-btn"
-                onClick={() => handleDelete(recipe._id)}
+              <p>
+                <strong>Instructions:</strong> {recipe.instructions}
+              </p>
+              <p>
+                <strong>Calories:</strong> {recipe.calories}
+              </p>
+              <span
+                onClick={() => toggleFavorite(recipe._id)}
+                style={{
+                  cursor: "pointer",
+                  fontSize: "22px",
+                  color: recipe.isFavorite ? "red" : "gray",
+                }}
               >
-                Delete
-              </button>
+                {recipe.isFavorite ? <FaHeart /> : <FaRegHeart />}
+              </span>
             </div>
           </div>
         ))}
       </div>
+
       <button onClick={() => navigate("/dashboard")} className="back-btn">
         Back to Dashboard
       </button>

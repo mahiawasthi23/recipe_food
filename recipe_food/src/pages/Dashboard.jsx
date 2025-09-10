@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -23,7 +25,14 @@ const Dashboard = () => {
       try {
         const resRecipes = await fetch("http://localhost:5000/api/recipes");
         const recipesData = await resRecipes.json();
-        setRecipes(recipesData);
+
+        const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        const updatedRecipes = recipesData.map((r) => ({
+          ...r,
+          isFavorite: storedFavorites.some((f) => f._id === r._id),
+        }));
+
+        setRecipes(updatedRecipes);
 
         const resCalories = await fetch(
           "http://localhost:5000/api/recipes/dashboard/total-calories"
@@ -46,11 +55,12 @@ const Dashboard = () => {
       await fetch(`http://localhost:5000/api/recipes/${id}`, {
         method: "DELETE",
       });
-      setRecipes(recipes.filter((r) => r._id !== id));
 
-    
-      const favs = recipes.filter((r) => r._id !== id && r.isFavorite);
-      localStorage.setItem("favorites", JSON.stringify(favs));
+      const remainingRecipes = recipes.filter((r) => r._id !== id);
+      setRecipes(remainingRecipes);
+
+      const updatedFavorites = remainingRecipes.filter((r) => r.isFavorite);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     } catch (err) {
       console.error("Delete error:", err);
     }
@@ -68,7 +78,6 @@ const Dashboard = () => {
 
       setRecipes(updatedRecipes);
 
-      
       const favs = updatedRecipes.filter((r) => r.isFavorite);
       localStorage.setItem("favorites", JSON.stringify(favs));
     } catch (err) {
@@ -101,13 +110,16 @@ const Dashboard = () => {
                 <strong>Calories:</strong> {recipe.calories}
               </p>
               <p>
-                <strong>Favorite:</strong> {recipe.isFavorite ? "Yes" : "No"}{" "}
-                <button
-                  className="favorite-btn"
+                <span
                   onClick={() => toggleFavorite(recipe._id)}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "22px",
+                    color: recipe.isFavorite ? "red" : "gray",
+                  }}
                 >
-                  {recipe.isFavorite ? "Remove Favorite" : "Mark Favorite"}
-                </button>
+                  {recipe.isFavorite ? <FaHeart /> : <FaRegHeart />}
+                </span>
               </p>
               <button
                 className="delete-btn"
@@ -124,4 +136,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
