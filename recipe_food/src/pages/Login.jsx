@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://recipe-app-backend-3-zktr.onrender.com/api/auth/login",
+        "https://recipe-backend-011q.onrender.com/api/auth/login",
         {
           method: "POST",
           body: JSON.stringify({ email, password }),

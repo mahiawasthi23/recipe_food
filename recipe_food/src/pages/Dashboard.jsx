@@ -23,7 +23,7 @@ const Dashboard = () => {
 
     const fetchData = async () => {
       try {
-        const resRecipes = await fetch("http://localhost:5000/api/recipes");
+        const resRecipes = await fetch("https://recipe-backend-011q.onrender.com/api/recipes");
         const recipesData = await resRecipes.json();
 
         const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -35,7 +35,7 @@ const Dashboard = () => {
         setRecipes(updatedRecipes);
 
         const resCalories = await fetch(
-          "http://localhost:5000/api/recipes/dashboard/total-calories"
+          "https://recipe-backend-011q.onrender.com/api/recipes/dashboard/total-calories"
         );
         const caloriesData = await resCalories.json();
         setTotalCalories(caloriesData.totalCalories);
@@ -52,7 +52,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/recipes/${id}`, {
+      await fetch(`https://recipe-backend-011q.onrender.com/api/recipes/${id}`, {
         method: "DELETE",
       });
 
@@ -68,7 +68,7 @@ const Dashboard = () => {
 
   const toggleFavorite = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/recipes/favorite/${id}`, {
+      await fetch(`https://recipe-backend-011q.onrender.com/api/recipes/favorite/${id}`, {
         method: "POST",
       });
 

@@ -34,7 +34,7 @@ const handleSubmit = (e) => {
 
   console.log("📤 Sending Recipe Data:", recipeData); 
 
-  fetch("http://localhost:5000/api/recipes", {
+  fetch("https://recipe-backend-011q.onrender.com/api/recipes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(recipeData)
