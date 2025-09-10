@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [search, setSearch] = useState(""); 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const storedUserRaw = localStorage.getItem("user");
@@ -43,12 +45,29 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    if (onSearch) onSearch(value); 
+  };
+
   return (
     <nav className="navbar">
       <div className="logo_food">
-        <img src="girlfood.png" className="cook_logo"/>
+        <img src="girlfood.png" className="cook_logo" alt="logo" />
         <h1><span>𝓡𝓮𝓬𝓲𝓹𝓮 𝓐𝓹𝓹</span></h1>
       </div>
+
+      {/* ✅ Search bar only after login */}
+      {user && (
+        <input
+          type="text"
+          placeholder="Search recipes..."
+          value={search}
+          onChange={handleSearchChange}
+          className="navbar-search"
+        />
+      )}
 
       <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
         <div></div>
