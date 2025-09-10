@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaHeart, FaRegHeart } from "react-icons/fa"; // Heart icons
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import "./Favorites.css";
 
 const Favorites = () => {
@@ -17,10 +17,15 @@ const Favorites = () => {
       .map((r) =>
         r._id === id ? { ...r, isFavorite: !r.isFavorite } : r
       )
-      .filter((r) => r.isFavorite); d
+      .filter((r) => r.isFavorite);
 
     setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
 
+  const handleDelete = (id) => {
+    const updatedFavorites = favorites.filter((r) => r._id !== id);
+    setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
@@ -58,16 +63,27 @@ const Favorites = () => {
               <p>
                 <strong>Calories:</strong> {recipe.calories}
               </p>
-              <span
-                onClick={() => toggleFavorite(recipe._id)}
-                style={{
-                  cursor: "pointer",
-                  fontSize: "22px",
-                  color: recipe.isFavorite ? "red" : "gray",
-                }}
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
-                {recipe.isFavorite ? <FaHeart /> : <FaRegHeart />}
-              </span>
+                <span
+                  onClick={() => toggleFavorite(recipe._id)}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "22px",
+                    color: recipe.isFavorite ? "red" : "gray",
+                  }}
+                >
+                  {recipe.isFavorite ? <FaHeart /> : <FaRegHeart />}
+                </span>
+
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(recipe._id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
