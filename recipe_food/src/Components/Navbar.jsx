@@ -58,7 +58,7 @@ const Navbar = ({ onSearch }) => {
         <h1><span>𝓡𝓮𝓬𝓲𝓹𝓮 𝓐𝓹𝓹</span></h1>
       </div>
 
-      {/* ✅ Search bar only after login */}
+      
       {user && (
         <input
           type="text"
