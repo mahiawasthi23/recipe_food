@@ -15,6 +15,9 @@ const Dashboard = ({ searchTerm }) => {
   const [totalCalories, setTotalCalories] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const [editingRecipe, setEditingRecipe] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -105,6 +108,34 @@ const Dashboard = ({ searchTerm }) => {
     }
   };
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        `https://recipe-backend-011q.onrender.com/api/recipes/${editingRecipe._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(editingRecipe),
+        }
+      );
+
+      if (res.ok) {
+        const updated = await res.json();
+        const updatedRecipes = recipes.map((r) =>
+          r._id === updated._id ? updated : r
+        );
+        setRecipes(updatedRecipes);
+        setFilteredRecipes(updatedRecipes);
+        setEditingRecipe(null);
+        setSuccessMessage("Recipe updated successfully!");
+        setTimeout(() => setSuccessMessage(""), 3000);
+      }
+    } catch (err) {
+      console.error("Update error:", err);
+    }
+  };
+
   if (!user) return null;
   if (loading) return <h3>Loading Dashboard...</h3>;
 
@@ -112,6 +143,73 @@ const Dashboard = ({ searchTerm }) => {
     <div className="dashboard-container">
       <h2>Welcome, {user.username || user.name}</h2>
       <h3>Total Calories: {totalCalories}</h3>
+
+      {successMessage && <p className="success-message">{successMessage}</p>}
+
+      {editingRecipe && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h3>Edit Recipe</h3>
+            <form onSubmit={handleUpdate}>
+              <input
+                type="text"
+                value={editingRecipe.title}
+                onChange={(e) =>
+                  setEditingRecipe({ ...editingRecipe, title: e.target.value })
+                }
+                placeholder="Title"
+                required
+              />
+              <textarea
+                value={editingRecipe.ingredients}
+                onChange={(e) =>
+                  setEditingRecipe({
+                    ...editingRecipe,
+                    ingredients: e.target.value,
+                  })
+                }
+                placeholder="Ingredients"
+                required
+              />
+              <textarea
+                value={editingRecipe.instructions}
+                onChange={(e) =>
+                  setEditingRecipe({
+                    ...editingRecipe,
+                    instructions: e.target.value,
+                  })
+                }
+                placeholder="Instructions"
+                required
+              />
+              <input
+                type="number"
+                value={editingRecipe.calories}
+                onChange={(e) =>
+                  setEditingRecipe({
+                    ...editingRecipe,
+                    calories: e.target.value,
+                  })
+                }
+                placeholder="Calories"
+                required
+              />
+              <div className="modal-actions">
+                <button type="submit" className="save-btn">
+                  Save
+                </button>
+                <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={() => setEditingRecipe(null)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       <div className="recipe-grid">
         {filteredRecipes.length > 0 ? (
@@ -151,6 +249,13 @@ const Dashboard = ({ searchTerm }) => {
                     onClick={() => handleDelete(recipe._id)}
                   >
                     Delete
+                  </button>
+
+                  <button
+                    className="edit-btn"
+                    onClick={() => setEditingRecipe(recipe)}
+                  >
+                    Edit
                   </button>
                 </div>
               </div>
