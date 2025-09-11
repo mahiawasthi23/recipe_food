@@ -6,7 +6,6 @@ import "./Dashboard.css";
 const Dashboard = ({ searchTerm }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const user = location.state?.user || storedUser;
 
